@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISTA Pro — 包装测试标准数字化管理平台</title>
+  <meta name="description" content="专业的ISTA包装测试标准查询、跌落测试计算器、振动压力参数计算及测试报告生成一体化平台，赋能包装工程师与品管团队。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect x="2" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M8 8V5a6 6 0 0112 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="14" cy="17" r="3" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ISTA<span class="brand-accent">Pro</span></span>
+          <span class="brand-tagline">包装测试数字化平台</span>
+        </div>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active" data-section="home">首页</a></li>
+        <li><a href="#standards" class="nav-link" data-section="standards">标准速查</a></li>
+        <li><a href="#calculator" class="nav-link" data-section="calculator">跌落计算器</a></li>
+        <li><a href="#vibration" class="nav-link" data-section="vibration">振动/压力</a></li>
+        <li><a href="#matrix" class="nav-link" data-section="matrix">对比矩阵</a></li>
+        <li><a href="#schema" class="nav-link" data-section="schema">数据接口</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-orb orb-1"></div>
+      <div class="hero-orb orb-2"></div>
+      <div class="hero-orb orb-3"></div>
+    </div>
+    <div class="container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        ISTA 认证标准 · 实时计算引擎
+      </div>
+      <h1 class="hero-title">
+        包装测试标准<br/>
+        <span class="gradient-text">数字化管理平台</span>
+      </h1>
+      <p class="hero-subtitle">
+        整合 ISTA 全系列测试程序，提供智能化跌落测试计算、<br/>
+        振动/压力参数分析，助力包装工程师与品管团队高效决策
+      </p>
+      <div class="hero-actions">
+        <a href="#calculator" class="btn btn-primary" id="heroDropBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+          启动跌落计算器
+        </a>
+        <a href="#standards" class="btn btn-secondary" id="heroStandardsBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 11l3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+          查询测试标准
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">ISTA 标准程序</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">10步</span>
+          <span class="stat-label">法定跌落顺序</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">智能</span>
+          <span class="stat-label">参数自动计算</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- Standards Quick Reference -->
+  <section class="section" id="standards">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">标准速查</div>
+        <h2 class="section-title">ISTA 测试标准快捷检索</h2>
+        <p class="section-subtitle">涵盖 ISTA Series 1, 2, 3, 6 全系列核心程序，快速定位适用标准</p>
+      </div>
+
+      <!-- Search & Filter -->
+      <div class="search-bar-wrapper">
+        <div class="search-bar">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="standardSearch" placeholder="搜索标准编号、适用场景或关键词…" class="search-input" />
+        </div>
+        <div class="filter-chips" id="filterChips">
+          <button class="chip chip-active" data-filter="all">全部</button>
+          <button class="chip" data-filter="series1">Series 1</button>
+          <button class="chip" data-filter="series2">Series 2</button>
+          <button class="chip" data-filter="series3">Series 3</button>
+          <button class="chip" data-filter="series6">Series 6</button>
+          <button class="chip" data-filter="series7">Series 7</button>
+        </div>
+      </div>
+
+      <!-- Standards Grid -->
+      <div class="standards-grid" id="standardsGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Drop Test Calculator -->
+  <section class="section section-dark" id="calculator">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">交互工具</div>
+        <h2 class="section-title">跌落测试交互计算器</h2>
+        <p class="section-subtitle">依据 ISTA 标准智能计算跌落高度、顺序与可视化示意图</p>
+      </div>
+
+      <div class="calculator-layout">
+        <!-- Input Panel -->
+        <div class="calc-input-panel">
+          <div class="panel-header">
+            <h3>测试参数输入</h3>
+            <span class="panel-badge">配置</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="weightInput">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a3 3 0 100 6 3 3 0 000-6zM3 12h18M3 12a9 9 0 009 9M3 12a9 9 0 019-9M21 12a9 9 0 01-9 9"/>
+              </svg>
+              包装件总重
+            </label>
+            <div class="input-with-unit">
+              <input type="number" id="weightInput" class="form-input" placeholder="例如：5.5" min="0" step="0.1" />
+              <div class="unit-toggle" id="unitToggle">
+                <button class="unit-btn unit-active" data-unit="kg" id="unitKg">kg</button>
+                <button class="unit-btn" data-unit="lb" id="unitLb">lb</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="standardSelect">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              测试标准 / 运输通道
+            </label>
+            <select id="standardSelect" class="form-select">
+              <option value="">— 请选择测试程序 —</option>
+              <optgroup label="ISTA Series 1">
+                <option value="1A">ISTA 1A — 基础非模拟运输测试</option>
+                <option value="1B">ISTA 1B — 一般运输 (重型)</option>
+                <option value="1C">ISTA 1C — 小型货物运输</option>
+              </optgroup>
+              <optgroup label="ISTA Series 2">
+                <option value="2A">ISTA 2A — 部分模拟运输测试</option>
+                <option value="2B">ISTA 2B — 部分模拟 (重型)</option>
+              </optgroup>
+              <optgroup label="ISTA Series 3">
+                <option value="3A">ISTA 3A — 全模拟运输测试 (小件)</option>
+                <option value="3B">ISTA 3B — 全模拟运输测试 (重型)</option>
+                <option value="3E">ISTA 3E — 单元化货物模拟</option>
+                <option value="3H">ISTA 3H — 家用电子包装</option>
+              </optgroup>
+              <optgroup label="ISTA Series 6 — 零售商专项">
+                <option value="6-AMAZON-SIOC">ISTA 6-AMAZON.COM-SIOC (Ships In Own Container)</option>
+                <option value="6-AMAZON-PREP">ISTA 6-AMAZON.COM-OVERBOX (需二次包装)</option>
+                <option value="6-WALMART">ISTA 6-WALMART (沃尔玛运输)</option>
+                <option value="6-SAMSCLUB">ISTA 6-SAMSCLUB (山姆会员店)</option>
+                <option value="6-TARGET">ISTA 6-TARGET (塔吉特百货)</option>
+                <option value="6-FEDEX">ISTA 6-FEDEX (联邦快递)</option>
+                <option value="6-UPS">ISTA 6-UPS (UPS联合包裹)</option>
+              </optgroup>
+              <optgroup label="ISTA Series 3 — 扩展">
+                <option value="3H">ISTA 3H — 大型家电运输测试</option>
+                <option value="3K">ISTA 3K — 连锁零售供应链测试</option>
+              </optgroup>
+              <optgroup label="ISTA Series 7 — 温控开发测试">
+                <option value="7D">ISTA 7D — 温控运输包装热力测试</option>
+                <option value="7E">ISTA 7E — 温控+反向物流测试</option>
+              </optgroup>
+              <optgroup label="ISTA Series 1 — 随机振动升级版">
+                <option value="1G">ISTA 1G — 非模拟重型随机振动</option>
+                <option value="1H">ISTA 1H — 非模拟轻型随机振动</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8zM5 17v2M12 17v2"/>
+              </svg>
+              运输方式
+            </label>
+            <div class="radio-group" id="transportGroup">
+              <label class="radio-card">
+                <input type="radio" name="transport" value="parcel" checked />
+                <span class="radio-icon">📦</span>
+                <span class="radio-label">小包裹<br/><small>快递/散货</small></span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="transport" value="ltl" />
+                <span class="radio-icon">🚚</span>
+                <span class="radio-label">LTL 零担<br/><small>托盘运输</small></span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="transport" value="air" />
+                <span class="radio-icon">✈️</span>
+                <span class="radio-label">航空运输<br/><small>空运货物</small></span>
+              </label>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-full" id="calcBtn" onclick="calculateDrop()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+            计算测试参数
+          </button>
+          <button class="btn btn-secondary btn-full" id="reportBtn" onclick="generateReport()" style="margin-top:8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/>
+            </svg>
+            生成测试规划报告 (PDF)
+          </button>
+
+          <!-- Results -->
+          <div class="result-panel" id="resultPanel" style="display:none;">
+            <div class="result-header">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+              </svg>
+              计算结果
+            </div>
+            <div class="result-items" id="resultItems"></div>
+          </div>
+        </div>
+
+        <!-- Visualization Panel -->
+        <div class="calc-visual-panel">
+          <div class="panel-header">
+            <h3>跌落顺序可视化</h3>
+            <span class="panel-badge">实时</span>
+          </div>
+          <div class="canvas-wrapper">
+            <canvas id="boxCanvas" width="420" height="380"></canvas>
+            <div class="canvas-overlay" id="canvasOverlay">
+              <div class="overlay-icon">📦</div>
+              <p>请输入参数并点击"计算测试参数"<br/>以显示3D跌落示意图</p>
+            </div>
+          </div>
+          <div class="drop-sequence" id="dropSequence" style="display:none;">
+            <div class="sequence-title">10步法定跌落顺序
+              <button class="btn btn-secondary autoplay-btn" id="autoPlayBtn" onclick="toggleAutoPlay()" style="margin-left:auto;padding:6px 14px;font-size:12px;">
+                ▶ 自动播放
+              </button>
+            </div>
+            <div class="sequence-steps" id="sequenceSteps"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vibration & Pressure -->
+  <section class="section" id="vibration">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">参数计算</div>
+        <h2 class="section-title">振动 / 静载荷压力计算</h2>
+        <p class="section-subtitle">根据堆码配置与安全系数，精确计算压力测试载荷</p>
+      </div>
+
+      <div class="vibration-layout">
+        <!-- Compression Calculator -->
+        <div class="vib-card">
+          <div class="vib-card-header">
+            <div class="vib-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="7" rx="1"/>
+                <rect x="2" y="14" width="20" height="7" rx="1"/>
+                <path d="M12 10v4M8 10v4M16 10v4"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="vib-card-title">堆码压力计算器</h3>
+              <p class="vib-card-sub">静载荷 (Static Load) 计算</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="stackWeight">单件重量 (kg)</label>
+            <input type="number" id="stackWeight" class="form-input" placeholder="例如：8.5" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="stackHeight">堆码层数</label>
+            <input type="number" id="stackHeight" class="form-input" placeholder="例如：6" min="1" max="20" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="safetyFactor">安全系数 (SF)</label>
+            <select id="safetyFactor" class="form-select">
+              <option value="1.5">1.5× — 一般零售 (ISTA 推荐)</option>
+              <option value="2.0" selected>2.0× — 零售商标准 (Amazon/Walmart)</option>
+              <option value="3.0">3.0× — 高价值货物</option>
+              <option value="custom">自定义…</option>
+            </select>
+          </div>
+          <div class="form-group" id="customSFGroup" style="display:none;">
+            <label class="form-label" for="customSF">自定义安全系数</label>
+            <input type="number" id="customSF" class="form-input" placeholder="输入安全系数" step="0.1" min="1" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="boxFootprint">箱体底面积 (mm²)</label>
+            <div class="input-row">
+              <input type="number" id="boxLength" class="form-input" placeholder="长 (mm)" />
+              <span class="input-sep">×</span>
+              <input type="number" id="boxWidth" class="form-input" placeholder="宽 (mm)" />
+            </div>
+          </div>
+          <button class="btn btn-primary btn-full" onclick="calculateCompression()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+            计算堆码载荷
+          </button>
+          <div class="compression-result" id="compressionResult" style="display:none;"></div>
+        </div>
+
+        <!-- Vibration Calculator -->
+        <div class="vib-card">
+          <div class="vib-card-header">
+            <div class="vib-icon vib-icon-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 12h2l3-9 4 18 3-9h8M2 12h20"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="vib-card-title">随机振动参数查询</h3>
+              <p class="vib-card-sub">PSD (功率谱密度) 快速参考</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="vibStandard">选择测试标准</label>
+            <select id="vibStandard" class="form-select" onchange="showVibParams()">
+              <option value="">— 选择标准 —</option>
+              <option value="ISTA1A">ISTA 1A</option>
+              <option value="ISTA1H">ISTA 1H (随机振动)</option>
+              <option value="ISTA2A">ISTA 2A</option>
+              <option value="ISTA3A">ISTA 3A</option>
+              <option value="ISTA3H">ISTA 3H (家电运输)</option>
+              <option value="AMAZON_SIOC">Amazon SIOC</option>
+              <option value="WALMART">Walmart 6</option>
+              <option value="FEDEX">FedEx 6</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="vibWeight2">包装件重量 (kg)</label>
+            <input type="number" id="vibWeight2" class="form-input" placeholder="例如：5.5" />
+          </div>
+
+          <div class="vib-params" id="vibParams" style="display:none;"></div>
+        </div>
+
+        <!-- Altitude Simulation -->
+        <div class="vib-card">
+          <div class="vib-card-header">
+            <div class="vib-icon vib-icon-amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="vib-card-title">低气压 / 高海拔模拟</h3>
+              <p class="vib-card-sub">航空运输气压测试参数</p>
+            </div>
+          </div>
+          <div class="altitude-info">
+            <div class="altitude-item">
+              <span class="altitude-label">模拟高度</span>
+              <span class="altitude-value">4,572 m (15,000 ft)</span>
+            </div>
+            <div class="altitude-item">
+              <span class="altitude-label">模拟气压</span>
+              <span class="altitude-value">57.18 kPa</span>
+            </div>
+            <div class="altitude-item">
+              <span class="altitude-label">测试时长</span>
+              <span class="altitude-value">≥ 1 小时</span>
+            </div>
+            <div class="altitude-item">
+              <span class="altitude-label">适用标准</span>
+              <span class="altitude-value">ISTA 2A, 3A, 6 系列</span>
+            </div>
+            <div class="altitude-item">
+              <span class="altitude-label">温度范围</span>
+              <span class="altitude-value">-20°C ~ +70°C</span>
+            </div>
+            <div class="altitude-item">
+              <span class="altitude-label">湿度要求</span>
+              <span class="altitude-value">≤ 25% RH (标准)</span>
+            </div>
+          </div>
+          <div class="altitude-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+            </svg>
+            适用于含液态电池、气溶胶或密封容器的货物
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Matrix -->
+  <section class="section section-dark" id="matrix">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">对比分析</div>
+        <h2 class="section-title">ISTA 核心测试矩阵速查表</h2>
+        <p class="section-subtitle">常用标准横向对比，快速确定适用范围与核心测试项目</p>
+      </div>
+      <div class="matrix-wrapper">
+        <div class="matrix-scroll">
+          <table class="matrix-table" id="matrixTable">
+            <thead>
+              <tr>
+                <th class="th-sticky">测试程序</th>
+                <th>适用类型/重量</th>
+                <th>环境调质</th>
+                <th>自由跌落</th>
+                <th>随机振动</th>
+                <th>斜面冲击</th>
+                <th>堆码压力</th>
+                <th>低气压</th>
+                <th>Pass/Fail 标准</th>
+              </tr>
+            </thead>
+            <tbody id="matrixBody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data Schema -->
+  <section class="section" id="schema">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">数据接口</div>
+        <h2 class="section-title">测试报告 JSON 数据结构</h2>
+        <p class="section-subtitle">标准化数据 Schema，兼容 n8n 工作流与工程结构数据库同步</p>
+      </div>
+
+      <div class="schema-layout">
+        <div class="schema-info">
+          <h3 class="schema-info-title">n8n 集成说明</h3>
+          <div class="schema-steps">
+            <div class="schema-step">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <h4>触发条件</h4>
+                <p>测试完成后通过 Webhook 触发 n8n 工作流，将 JSON 报告发送至指定端点</p>
+              </div>
+            </div>
+            <div class="schema-step">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <h4>数据转换</h4>
+                <p>n8n Function 节点处理 Schema，提取关键字段并标准化单位</p>
+              </div>
+            </div>
+            <div class="schema-step">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <h4>数据库同步</h4>
+                <p>通过 MySQL / PostgreSQL / Airtable 节点写入工程结构数据库</p>
+              </div>
+            </div>
+            <div class="schema-step">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <h4>通知推送</h4>
+                <p>自动发送 Email / Slack / Teams 通知至相关工程师团队</p>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="downloadSchema()" id="downloadSchemaBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            下载 Schema JSON
+          </button>
+        </div>
+
+        <div class="schema-code-panel">
+          <div class="code-header">
+            <div class="code-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="code-title">ista_test_report.schema.json</span>
+            <button class="code-copy" onclick="copySchema()" id="copySchemaBtnTop">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+              </svg>
+              复制
+            </button>
+          </div>
+          <pre class="code-block" id="schemaCode"></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="nav-brand">
+            <div class="brand-icon">
+              <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                <rect x="2" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 8V5a6 6 0 0112 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="14" cy="17" r="3" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="brand-text">
+              <span class="brand-name">ISTA<span class="brand-accent">Pro</span></span>
+            </div>
+          </div>
+          <p class="footer-desc">专业包装测试标准数字化管理平台，赋能工程师团队提升效率与合规性。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>核心模块</h4>
+            <ul>
+              <li><a href="#standards">标准速查</a></li>
+              <li><a href="#calculator">跌落计算器</a></li>
+              <li><a href="#vibration">振动/压力</a></li>
+              <li><a href="#matrix">对比矩阵</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>参考资料</h4>
+            <ul>
+              <li><a href="https://www.ista.org" target="_blank" rel="noopener">ISTA 官方网站</a></li>
+              <li><a href="#schema">数据接口文档</a></li>
+              <li><a href="#calculator">测试报告生成</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ISTA Pro 包装测试平台 · 数据仅供参考，正式测试请以 ISTA 原版标准文件为准</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
